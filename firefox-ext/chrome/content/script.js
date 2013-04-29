@@ -18,9 +18,11 @@ process.nextTick = (function () {
         window.addEventListener('message', function (ev) {
             alert('window.postMessage source: ' + ev.source);
             alert('window.postMessage data: ' + ev.data);
-            var passesConditional = ev.source === window && ev.data === 'process-tick';
+            // var passesConditional = ev.source === window && ev.data === 'process-tick';
+            var passesConditional = (ev.source === window || ev.source === null) && ev.data === 'process-tick';
             alert('Calling process.nextTicket function: ' + passesConditional);
-            if (ev.source === window && ev.data === 'process-tick') {
+            // if (ev.source === window && ev.data === 'process-tick') {
+            if (passesConditional) {
                 ev.stopPropagation();
                 if (queue.length > 0) {
                     var fn = queue.shift();
