@@ -16,8 +16,10 @@ process.nextTick = (function () {
     if (canPost) {
         var queue = [];
         window.addEventListener('message', function (ev) {
-            alert(ev.source);
-            alert(ev.data);
+            alert('window.postMessage source: ' + ev.source);
+            alert('window.postMessage data: ' + ev.data);
+            var passesConditional = ev.source === window && ev.data === 'process-tick';
+            alert('Calling process.nextTicket function: ' + passesConditional);
             if (ev.source === window && ev.data === 'process-tick') {
                 ev.stopPropagation();
                 if (queue.length > 0) {
@@ -53,7 +55,7 @@ process.chdir = function (dir) {
     throw new Error('process.chdir is not supported');
 };
 
-
+alert('You should see a few alerts being generated from a `process.nextTick call');
 process.nextTick(function () {
-    alert(1);
+    alert('process.nextTick called!');
 });
