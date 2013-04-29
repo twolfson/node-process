@@ -16,8 +16,8 @@ process.nextTick = (function () {
     if (canPost) {
         var queue = [];
         window.addEventListener('message', function (ev) {
-          alert(ev.source);
-          alert(ev.data);
+            alert(ev.source);
+            alert(ev.data);
             if (ev.source === window && ev.data === 'process-tick') {
                 ev.stopPropagation();
                 if (queue.length > 0) {
@@ -55,5 +55,5 @@ process.chdir = function (dir) {
 
 
 process.nextTick(function () {
-  alert(1);
+    alert(1);
 });
