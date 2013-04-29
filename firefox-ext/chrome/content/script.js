@@ -55,7 +55,7 @@ process.chdir = function (dir) {
     throw new Error('process.chdir is not supported');
 };
 
-alert('You should see a few alerts being generated from a `process.nextTick call');
+alert('You should see a few alerts being generated from a `process.nextTick` call');
 process.nextTick(function () {
     alert('process.nextTick called!');
 });
